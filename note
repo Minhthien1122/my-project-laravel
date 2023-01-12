@@ -1,0 +1,33 @@
+cài đặt môi trường:
+- cài xampp, composer, docker
+- cấu hình docker-compose
+- composer create-project laravel/laravel:8.6.11 example-boilerplate --prefer-dist
+- docker-compose up -d
+- docker ps
+
+Cài laravel auth:
+- docker-compose run composer require laravel/ui
+- docker-compose run php sh
+  - php artisan ui vue --auth
+
+Kết nối csdl:
+  - env php : đổi lại 
+    DB_HOST=mysql
+    DB_DATABASE=project
+    DB_USERNAME=homestead
+    DB_PASSWORD=homestead
+  cache lại config: php artisan config:cache
+  chạy data: php artisan migrate
+
+use passport (hướng dẫn https://laravel.com/docs/8.x/passport):
+  docker-compose run composer require laravel/passport
+  chạy lại data:
+    php artisan migrate
+    php artisan passport:install
+
+    Them use HasApiTokens tai app/model/user (luu ú nếu sd passpart thì đổi Sanctum thành Passport trên package)
+
+    
+tao api  dang ky: (tạo controller, request, router)
+   php artisan make:controller ApiRegisterController
+   php artisan make:request  ApiRegisterRequest
